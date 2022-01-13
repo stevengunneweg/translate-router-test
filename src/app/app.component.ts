@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'translate-router-test';
+  constructor(
+    private readonly translate: TranslateService,
+    private readonly translateRoute: LocalizeRouterService,
+  ) {}
+  
+  changeLanguage(lang: string): void {
+    this.translate.use(lang);
+    this.translateRoute.changeLanguage(lang);
+  }
 }
